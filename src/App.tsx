@@ -42,6 +42,8 @@ export default function App() {
     setPortraitIndex((prev) => (prev + 1) % portraitImages.length);
   };
 
+  const buttonTouchStartRef = useRef<{ x: number; y: number } | null>(null);
+
   const openSocialLink = (platform: string, url: string, e?: React.SyntheticEvent) => {
     if (e) {
       e.preventDefault();
@@ -50,6 +52,21 @@ export default function App() {
     playSound('contact');
     if (navigator.vibrate) { try { navigator.vibrate(35); } catch {} }
     setSocialModal({ platform, url });
+  };
+
+  const handleSocialButtonClick = (platform: string, url: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isTransitioning) return;
+
+    if (buttonTouchStartRef.current) {
+      const dx = Math.abs(e.clientX - buttonTouchStartRef.current.x);
+      const dy = Math.abs(e.clientY - buttonTouchStartRef.current.y);
+      buttonTouchStartRef.current = null;
+      if (dx > 12 || dy > 12) {
+        return; // Finger moved during swipe gesture, ignore popup
+      }
+    }
+    openSocialLink(platform, url, e);
   };
 
   useEffect(() => {
@@ -978,12 +995,14 @@ export default function App() {
               {/* GitHub */}
               <button 
                 type="button"
-                onClick={(e) => openSocialLink('GitHub', 'https://github.com/siddhijha-Arc', e)}
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                onTouchEnd={(e) => {
-                  e.stopPropagation();
-                  openSocialLink('GitHub', 'https://github.com/siddhijha-Arc', e);
+                onClick={(e) => handleSocialButtonClick('GitHub', 'https://github.com/siddhijha-Arc', e)}
+                onMouseDown={(e) => {
+                  buttonTouchStartRef.current = { x: e.clientX, y: e.clientY };
+                }}
+                onTouchStart={(e) => {
+                  if (e.touches[0]) {
+                    buttonTouchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                  }
                 }}
                 className="flex flex-col items-center justify-center group cursor-pointer w-full relative z-50 pointer-events-auto select-none bg-transparent border-none outline-none p-0"
                 title="GitHub Profile"
@@ -1000,12 +1019,14 @@ export default function App() {
               {/* X / Twitter */}
               <button 
                 type="button"
-                onClick={(e) => openSocialLink('X', 'https://x.com/Siddk_jha', e)}
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                onTouchEnd={(e) => {
-                  e.stopPropagation();
-                  openSocialLink('X', 'https://x.com/Siddk_jha', e);
+                onClick={(e) => handleSocialButtonClick('X', 'https://x.com/Siddk_jha', e)}
+                onMouseDown={(e) => {
+                  buttonTouchStartRef.current = { x: e.clientX, y: e.clientY };
+                }}
+                onTouchStart={(e) => {
+                  if (e.touches[0]) {
+                    buttonTouchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                  }
                 }}
                 className="flex flex-col items-center justify-center group cursor-pointer w-full relative z-50 pointer-events-auto select-none bg-transparent border-none outline-none p-0"
                 title="X Profile"
@@ -1022,12 +1043,14 @@ export default function App() {
               {/* LinkedIn */}
               <button 
                 type="button"
-                onClick={(e) => openSocialLink('LinkedIn', 'https://www.linkedin.com/in/siddhi-kumar-jha-aa4725433?utm_source=share_via&utm_content=profile&utm_medium=member_android', e)}
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                onTouchEnd={(e) => {
-                  e.stopPropagation();
-                  openSocialLink('LinkedIn', 'https://www.linkedin.com/in/siddhi-kumar-jha-aa4725433?utm_source=share_via&utm_content=profile&utm_medium=member_android', e);
+                onClick={(e) => handleSocialButtonClick('LinkedIn', 'https://www.linkedin.com/in/siddhi-kumar-jha-aa4725433?utm_source=share_via&utm_content=profile&utm_medium=member_android', e)}
+                onMouseDown={(e) => {
+                  buttonTouchStartRef.current = { x: e.clientX, y: e.clientY };
+                }}
+                onTouchStart={(e) => {
+                  if (e.touches[0]) {
+                    buttonTouchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                  }
                 }}
                 className="flex flex-col items-center justify-center group cursor-pointer w-full relative z-50 pointer-events-auto select-none bg-transparent border-none outline-none p-0"
                 title="LinkedIn Profile"
@@ -1044,12 +1067,14 @@ export default function App() {
               {/* Instagram */}
               <button 
                 type="button"
-                onClick={(e) => openSocialLink('Instagram', 'https://www.instagram.com/siddhi_jha._?obrf=NnVtOTVtdmpybzh2', e)}
-                onMouseDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                onTouchEnd={(e) => {
-                  e.stopPropagation();
-                  openSocialLink('Instagram', 'https://www.instagram.com/siddhi_jha._?obrf=NnVtOTVtdmpybzh2', e);
+                onClick={(e) => handleSocialButtonClick('Instagram', 'https://www.instagram.com/siddhi_jha._?obrf=NnVtOTVtdmpybzh2', e)}
+                onMouseDown={(e) => {
+                  buttonTouchStartRef.current = { x: e.clientX, y: e.clientY };
+                }}
+                onTouchStart={(e) => {
+                  if (e.touches[0]) {
+                    buttonTouchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                  }
                 }}
                 className="flex flex-col items-center justify-center group cursor-pointer w-full relative z-50 pointer-events-auto select-none bg-transparent border-none outline-none p-0"
                 title="Instagram Profile"
