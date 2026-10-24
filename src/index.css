@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-michroma {
+    font-family: 'Michroma', sans-serif;
+  }
+  .font-space {
+    font-family: 'Space Grotesk', monospace, sans-serif;
+  }
+  .font-serif-display {
+    font-family: 'Cinzel', 'Playfair Display', serif;
+  }
+  .font-techno-capsule {
+    font-family: 'Michroma', sans-serif;
+    letter-spacing: -0.02em;
+    display: inline-block;
+  }
+  .font-wide-trotoart {
+    font-family: 'Michroma', sans-serif;
+    letter-spacing: -0.01em;
+    transform: scaleY(0.92);
+  }
+
+  .bg-dark-textured {
+    background-color: #0b0b0b;
+    background-image: radial-gradient(circle at 50% 25%, #181818 0%, #080808 90%);
+  }
+
+  .badge-card-shadow {
+    box-shadow: 
+      0 30px 60px -15px rgba(0, 0, 0, 0.95),
+      0 0 0 1px rgba(255, 255, 255, 0.12),
+      0 12px 24px -6px rgba(0, 0, 0, 0.7);
+  }
+
+  .crease-overlay {
+    background:
+      radial-gradient(ellipse 65% 35% at 25% 65%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 60%),
+      radial-gradient(ellipse 50% 45% at 80% 30%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 42%, rgba(255, 255, 255, 0.14) 100%);
+  }
+
+  .perspective-tunnel {
+    background-color: #F5B800;
+  }
+
+  .tape-strip-realistic {
+    background: linear-gradient(135deg, #e6b124 0%, #f7c938 35%, #e1aa1b 65%, #f2bf2b 100%);
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    clip-path: polygon(
+      0% 4%, 3% 0%, 97% 2%, 100% 6%, 98% 95%, 95% 100%, 3% 98%, 0% 93%
+    );
+  }
+
+  @keyframes scanline {
+    0% {
+      top: 0%;
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+
+  .animate-scanline {
+    animation: scanline 0.75s ease-in-out;
+  }
+
+  @keyframes pendulum {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(-4deg); }
+    75% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .animate-swing {
+    transform-origin: top center;
+    animation: pendulum 0.8s ease-in-out;
+  }
+
+  @keyframes tapeBounce {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.15) rotate(4deg); }
+    60% { transform: scale(0.95) rotate(-3deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  .animate-tape-bounce {
+    animation: tapeBounce 0.4s ease-out;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  @keyframes webSwingGwen {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(4.5deg); }
+    50% { transform: rotate(-4deg); }
+    75% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @keyframes webSwingSpidey {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(5.5deg); }
+    75% { transform: rotate(-2.5deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @keyframes webSwingMiles {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(-4.5deg); }
+    75% { transform: rotate(3deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .animate-continuous-swing-gwen {
+    transform-origin: top center;
+    animation: webSwingGwen 2.8s ease-in-out infinite;
+  }
+
+  .animate-continuous-swing-spidey {
+    transform-origin: top center;
+    animation: webSwingSpidey 2.4s ease-in-out infinite;
+  }
+
+  .animate-continuous-swing-miles {
+    transform-origin: top center;
+    animation: webSwingMiles 2.6s ease-in-out infinite;
+  }
+
+  @keyframes spideyFrontFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    30% { transform: translateY(-7px) rotate(-0.3deg); }
+    70% { transform: translateY(5px) rotate(0.6deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  .animate-spidey-front-float {
+    transform-origin: top center;
+    animation: spideyFrontFloat 3.5s ease-in-out infinite;
+  }
+
+  @keyframes ironManSqueeze {
+    0% { transform: scale(1) translateY(0); }
+    35% { transform: scale(1.07) translateY(-2px) scaleX(0.97); }
+    70% { transform: scale(0.98) translateY(1px) scaleX(1.02); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  .animate-iron-man-squeeze {
+    transform-origin: bottom right;
+    animation: ironManSqueeze 2.6s ease-in-out infinite;
+  }
+
+  @keyframes badgeTorsional {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-1.8deg); }
+    75% { transform: rotate(1.8deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .animate-badge-torsional {
+    transform-origin: top center;
+    animation: badgeTorsional 5s ease-in-out infinite;
+  }
+
+  @keyframes shakeCard {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    20% { transform: translateX(-8px) rotate(-2.5deg); }
+    40% { transform: translateX(8px) rotate(2.5deg); }
+    60% { transform: translateX(-5px) rotate(-1.5deg); }
+    80% { transform: translateX(5px) rotate(1.5deg); }
+  }
+
+  .animate-card-shake {
+    animation: shakeCard 0.5s ease-in-out;
+  }
+}
+
+
+
