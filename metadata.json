@@ -1,6 +1,6 @@
 {
-  "name": "Afdal Trotoart ID Card Badge",
-  "description": "Interactive mobile view for Afdal Trotoart laminated ID card badge with custom controls, 3D tilt, and editor.",
+  "name": "Siddhi Jha | Portfolio ID Card Badge",
+  "description": "Siddhi Jha — full stack developer portfolio as an interactive 3D ID card badge.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

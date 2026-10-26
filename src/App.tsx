@@ -30,7 +30,7 @@ export default function App() {
 
   const portraitImages = [
     '/assets/aistudio/1000008345_12a38a82.png',
-    '/assets/aistudio/file_0000000061788211bbaece728e38b584_b2cfbd73.png',
+    '/assets/aistudio/1000008758_91a7e104.png',
   ];
 
   const handlePortraitClick = (e: React.MouseEvent) => {
@@ -617,7 +617,14 @@ export default function App() {
               isFlipped ? 'pointer-events-none opacity-0' : 'pointer-events-auto opacity-100'
             }`}
           >
-            
+            {/* Base Background Image Layer (Below all components) */}
+            <img 
+              src="/assets/aistudio/cab03c121d96f013bde500c5df8e2278_6a01ffbc.jpg" 
+              alt="Card Graphic Background" 
+              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none z-0"
+              draggable={false}
+            />
+
             {/* Ephemeral Scratch Marks on Plastic Overlay */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-35 overflow-hidden">
               {scratches.map((s, index) => (
@@ -651,24 +658,24 @@ export default function App() {
 
             {/* BEGIN: Card Header */}
             <section 
-              className="relative w-full flex items-center justify-between pt-1 pb-2 px-1" 
+              className="relative w-full flex items-center justify-between pt-1 pb-2 px-0.5 z-10" 
               data-purpose="badge-header"
               style={{ transform: `translate(${tiltX * 0.4}px, ${tiltY * 0.4}px)`, transition: 'transform 0.1s ease-out' }}
             >
-              {/* Left: Designer Identity & Role */}
-              <div className="flex flex-col text-left leading-tight z-10">
-                <span className="font-michroma text-[12px] font-bold text-black tracking-wider">SIDDHI JHA</span>
-                <span className="font-michroma text-[7.5px] font-semibold text-black tracking-wider mt-0.5">SOFTWARE DEVELOPER</span>
+              {/* Left: Designer Identity & Role in white bulged bubble box */}
+              <div className="flex flex-col text-left leading-tight z-10 bg-white border-[1.8px] border-black rounded-xl px-2 py-1 shadow-[2px_2.5px_0px_rgba(0,0,0,1)]">
+                <span className="font-michroma text-[10px] sm:text-[10.5px] font-black text-black tracking-wider">SIDDHI JHA</span>
+                <span className="font-michroma text-[6.5px] sm:text-[7px] font-extrabold text-black tracking-wider mt-0.5">SOFTWARE DEVELOPER</span>
               </div>
               {/* Center: Cutout Slot for Lanyard Hook */}
-              <div className="absolute left-1/2 -translate-x-1/2 -top-1 flex flex-col items-center z-10">
+              <div className="absolute left-1/2 -translate-x-1/2 -top-1 flex flex-col items-center z-10 pointer-events-none">
                 <div className="w-12 h-3 bg-[#111111] rounded-full border-[1.5px] border-zinc-400 shadow-inner flex items-center justify-center">
                   <div className="w-2.5 h-3 bg-gradient-to-b from-amber-400 to-amber-600 rounded-sm opacity-95"></div>
                 </div>
               </div>
-              {/* Right: Real-time Live Clock */}
-              <div className="flex items-center justify-end z-10">
-                <span className="font-techno-capsule font-extrabold text-[12px] sm:text-[13px] leading-none text-black tracking-tight">{currentTime}</span>
+              {/* Right: Real-time Live Clock in white bulged bubble box */}
+              <div className="flex items-center justify-end z-10 bg-white border-[1.8px] border-black rounded-xl px-2.5 py-1.5 shadow-[2px_2.5px_0px_rgba(0,0,0,1)]">
+                <span className="font-techno-capsule font-extrabold text-[11px] sm:text-[12px] leading-none text-black tracking-tight">{currentTime}</span>
               </div>
             </section>
             {/* END: Card Header */}
@@ -760,19 +767,23 @@ export default function App() {
             {/* END: Hero Portrait */}
 
             {/* BEGIN: Middle Typography Row */}
-            <section className="w-full mt-3 mb-2 px-0.5 flex items-center justify-between gap-2" data-purpose="typography-title-row">
-              <div className="flex flex-col leading-[1.1] shrink-0 group cursor-default">
-                <span className="font-michroma text-[9px] font-bold tracking-wider text-black uppercase transition-colors group-hover:text-amber-600">HACK. BUILD.</span>
-                <span className="font-michroma text-[9px] font-bold tracking-wider text-black mt-0.5 uppercase transition-colors group-hover:text-amber-600">REPEAT.</span>
+            <section className="w-full mt-3 mb-2 px-0.5 flex items-center justify-between gap-2 relative z-10" data-purpose="typography-title-row">
+              {/* Left: Hack Build Repeat bubble box */}
+              <div className="flex flex-col leading-[1.1] shrink-0 group cursor-default bg-white border-[1.8px] border-black rounded-xl px-2.5 py-1.5 shadow-[2px_2.5px_0px_rgba(0,0,0,1)]">
+                <span className="font-michroma text-[8px] sm:text-[8.5px] font-black tracking-wider text-black uppercase transition-colors group-hover:text-amber-600">HACK. BUILD.</span>
+                <span className="font-michroma text-[8px] sm:text-[8.5px] font-black tracking-wider text-black mt-0.5 uppercase transition-colors group-hover:text-amber-600">REPEAT.</span>
               </div>
-              <div className="flex-1 text-right overflow-hidden group cursor-default">
-                <h2 className="font-wide-trotoart text-[21px] sm:text-[23px] font-bold text-black tracking-tight uppercase whitespace-nowrap inline-block transition-colors group-hover:text-amber-600">SIDDHI.DEV</h2>
+              {/* Right: Siddhi.dev bubble box */}
+              <div className="flex-1 flex justify-end overflow-hidden group cursor-default">
+                <div className="bg-white border-[1.8px] border-black rounded-xl px-2.5 sm:px-3 py-1 shadow-[2px_2.5px_0px_rgba(0,0,0,1)] flex items-center justify-center max-w-full">
+                  <h2 className="font-wide-trotoart text-[17px] sm:text-[19px] font-black text-black tracking-tight uppercase whitespace-nowrap inline-block transition-colors group-hover:text-amber-600">SIDDHI.DEV</h2>
+                </div>
               </div>
             </section>
             {/* END: Middle Typography Row */}
 
             {/* BEGIN: Bottom Section Dual Cards */}
-            <section className="w-full grid grid-cols-2 gap-2.5 items-stretch relative mt-0.5 pb-1" data-purpose="info-modules">
+            <section className="w-full grid grid-cols-2 gap-2.5 items-stretch relative mt-0.5 pb-1 z-10" data-purpose="info-modules">
               
               {/* LEFT MODULE: Dark Charcoal Box with Laser Scan Effect */}
               <article 
@@ -864,13 +875,16 @@ export default function App() {
             isFlipped ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
           }`}>
             
-            {/* Cyber Base Background Template from Projects_20261023_214025_0000_2ed6ee21.png */}
+            {/* New Spider-Man Comic Collage Background */}
             <img 
-              src="/assets/aistudio/Projects_20261023_214025_0000_2ed6ee21.png" 
-              alt="Cyber Badge Back Template" 
-              className="absolute inset-0 w-full h-full object-cover select-none" 
+              src="/assets/aistudio/232c79e5747a3ec27933636fdbe680b8_b8d2fe5f.jpg" 
+              alt="Spider-Man Back Graphic Background" 
+              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none z-0" 
               draggable={false}
             />
+
+            {/* Black Pill Slot Bar for Hanging Spider-Verse Characters */}
+            <div className="absolute top-[4.5%] left-1/2 -translate-x-1/2 w-[34%] max-w-[125px] h-6 sm:h-7 bg-black rounded-full border border-zinc-800 shadow-md z-10 pointer-events-none"></div>
 
             {/* Spider-Verse Characters Hanging System Emerging From Inside Black Pill Bar */}
             <div className="absolute inset-x-0 top-[4.5%] bottom-0 overflow-hidden pointer-events-none z-20">
@@ -990,7 +1004,7 @@ export default function App() {
             </div>
 
             {/* Socials Card Content: Shifting lower down with user specific profile links */}
-            <div className="absolute top-[36.5%] left-1/2 -translate-x-1/2 w-[80%] max-w-[265px] z-50 pointer-events-auto grid grid-cols-2 gap-x-3 gap-y-2 items-center justify-items-center text-center">
+            <div className="absolute top-[35.5%] left-1/2 -translate-x-1/2 w-[72%] max-w-[220px] z-50 pointer-events-auto grid grid-cols-2 gap-x-1.5 gap-y-1.5 items-center justify-items-center text-center">
               
               {/* GitHub */}
               <button 
@@ -1088,6 +1102,33 @@ export default function App() {
                 <span className="font-michroma text-[10px] sm:text-[11.5px] font-black text-black mt-0.5 tracking-tight pointer-events-none">Instagram</span>
               </button>
 
+            </div>
+
+            {/* Two PNG slots in the bottom areas marked with yellow in screenshot */}
+            <div className="absolute bottom-[3%] inset-x-3 z-40 pointer-events-auto flex items-center justify-between px-2">
+              {/* Left Marked Yellow Area with 'PROJECT' badge container on top */}
+              <div className="w-[42%] h-[92px] sm:h-[105px] bg-white/90 backdrop-blur-sm border-[2px] border-black rounded-2xl p-1.5 shadow-[2px_3px_0px_rgba(0,0,0,1)] flex items-center justify-center overflow-hidden group cursor-pointer hover:scale-105 active:scale-95 transition-transform relative" title="Projects & Files">
+                {/* Small white container with 'PROJECT' */}
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 bg-white border-[1.5px] border-black rounded-md px-2 py-0.5 shadow-sm z-10">
+                  <span className="font-michroma text-[7px] sm:text-[8px] font-black text-black tracking-wider uppercase">PROJECT</span>
+                </div>
+                <img 
+                  src="/assets/aistudio/IMG_20261026_135658_caa5e608.png" 
+                  alt="Projects Folder" 
+                  className="w-full h-full object-contain select-none mt-2" 
+                  draggable={false}
+                />
+              </div>
+
+              {/* Right Marked Yellow Area with duplicate folder PNG */}
+              <div className="w-[42%] h-[92px] sm:h-[105px] bg-white/90 backdrop-blur-sm border-[2px] border-black rounded-2xl p-1.5 shadow-[2px_3px_0px_rgba(0,0,0,1)] flex items-center justify-center overflow-hidden group cursor-pointer hover:scale-105 active:scale-95 transition-transform" title="Projects & Files">
+                <img 
+                  src="/assets/aistudio/IMG_20261026_135658_caa5e608.png" 
+                  alt="Projects Folder Duplicate" 
+                  className="w-full h-full object-contain select-none" 
+                  draggable={false}
+                />
+              </div>
             </div>
 
             {/* Wrinkled Plastic Bag Texture Overlay on Back Face for Realistic Polythene Sheen */}
